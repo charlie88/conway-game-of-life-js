@@ -16,7 +16,7 @@
   <meta name="description" content="">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
-  <!--<meta name="viewport" content="width=device-width">-->
+  <meta name="viewport" content="width=device-width">
 
   <link rel="stylesheet" href="css/style.css">
 
