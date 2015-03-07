@@ -30,7 +30,7 @@ var example3_cells = [];
 
 //Specify the cells I want
 //var rand_num = Math.floor(Math.random()*100)+10;
-var rand_num = not_so_rand_num = 20;
+var rand_num = not_so_rand_num = 25;
 for (var i=0; i < rand_num; i++) {
   example3_cells[i] = [];
   for (var j=0; j < rand_num; j++) {
