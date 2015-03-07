@@ -14,6 +14,7 @@ var GameOfLife = function(params){
       colourful   = params["colourful"] || params["colorful"] || false,
 
       cell_array = [],
+      
       display     = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful),
       interval = null,    // Will store reference to setInterval method -- this should maybe be part of GameDisplay
       init        = function() {
@@ -137,6 +138,9 @@ var GameOfLife = function(params){
     },
     getInterval: function() {
       return interval;
+    },
+    init: function() {
+    	init();
     }
   };
 };
@@ -147,6 +151,10 @@ var GameOfLife = function(params){
 // svg, or whatever other method you feel like. Just create a new <___>Display
 // Object!
 var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful) {
+	
+  var img = new Image();
+  img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABQ1JREFUeNrsnb1PVEEQwPcORFBR8AAV5UPgIDFaaeEfYGNjYWKnpUattDHxH7C2sFArE/4EjY2JjUYTQ2WhMcehIJFgDB9iAMHjnM09DDnv6+3MvJt9N5NMIcmus++3szNvdt9eIp/PGxU5klAgCkRFgSgQFQWiQFQUiAJRaQAgSdAroJ2O7TdBx0F/MtjWDnoZdLdje2vTE9Atn4CcB32O7OMC6FMG2+6C3kP20Q/6FTNbo5Yxgj5mhNr2B3QOu3xELcMEfWSF2jYdQPEKyAiy/TzoL6G2TVIEWN+AZJjs2gt6uN62RQ2kGXQQ2ceU0IlCYlvUQPoCKHVdFhhjm3dLFsUszAoGkvUNSJqgj4xQ2/I+AolzyjsL+rvRlqwl0AWhtpFMlKiBDAkN6C2gxyTYFiWQhIQXrwoTJdloQHpBW4UCocj+vAOiKa8C8c+2KIEMSVkWGGyzBc8V34CMItuvGuReA6NtZJ7rk4dweUcT6IAU22ot9NkM6VKQurrKCYK0+RYDkBToLmQfPQjbLMxn/wZZ4576Y9CrRoVDpnZmebUuWWP63NhkxiWGjOhzY5PJsEDaghiiwiPZsEDUO3glExbIkD4z9qCuHuJzDBnWZ8Ym301RyaUWIGl9btF4hy5ZHgKxJYU+fW7RBPRagAyaQvFNRYiHaEDnlY/Ff6hWXLRfOd00uGrobdD9SLceZ3gYtgJxB9nHG9AXjm3t3o4t2ubDAKEY9Cqyj0eg1xlsOwv6FtnHDdCHlEZxb1BRvOVzHR0dlmgbNxARR/x9so0biIgj/ky22a+Bqb51bFIgeNs+g+aIbGmJCgi27PINdE2obZQTZcMXD+HyDntBQLcg23JRALHvLtjjNQ0V0LmBDBh82SXW3xNGDWRE6qCJbMsoEDm22ctlvvgGJM4p78zOzKhRPMR+S7gs1DauZIMVCLaOxVXDsndhHRVi239npZsrGJ0y7oerkwQvXnMED66UjBrcoXErPxxsywexZ7nSy245IBdBTyMM3m/wJ8oPmcJeisTYdiqkbVtBzLEg35nCPkqoJasHafABgkEvMS1ZHQR9LDq02d54Wq20ZJUD0oU0uJNg0MuCgbjYlgigrJWAVBFIW6D19pAFoUDs5WmbjsHbPu/1sFlWF8GgsR6yafiqvJ118I58oDlTZUu7FJAUwaCxHrLIBCNpcAcuMLHNAmlyAdLt6SysNftL1AlIwnXJwnrIHoKUl8tDKAL6kqN3bMefXNignqqzd8Qx5d3OsKomKhxBvSPmQFyX02QtbZMl/t2uL4VlZb1aDKiS9oYG0ipg0HaNXREKBDNRErW0LwbSIiDD4vIOCiDYZKNqDCk+22sBHUf+pxPIgb8EvcYA4wjoK2QfD0DvO7a1xcXZUpnVTimu9tqqZBbpHdhZ+N7w3IvVT9DHhOG7s6tsloWRON+JxWkbG5C04EGnGxFInA822Lfsed+AYA8P2JR3mmmsIi5K9s1D0L9Qo0BogXAtV7aCvQ/ZR8Y3IPYXanqFAhkl6MM7D9GUVxgQvShZGJA4/zbIdtmj4TxE6ml3O1G2Gg0IyS/UML2lR7JcSVuyuLzDbpgd9CGgUwKx+yjYaqrk7wm985BBgr4kX6HhnYdolVcYkDinvJwFTzYg2F8422BcsrC2fTLhD1c7C9V9WfZronPG/ZjmB1P4kIVDToKeQbR/HeWSxX2BmYoCUSAqCkSBqCgQBaIiQP4KMABODzgFTQcJswAAAABJRU5ErkJggg==';
+      
   var canvas = document.getElementById(canvas_id),
       ctx = canvas.getContext && canvas.getContext('2d'),
       width_pixels = num_cells_x * cell_width,
@@ -196,6 +204,9 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
             ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
           }
           ctx.fillRect(start_x, start_y, cell_width, cell_height);
+          //now draw the image there
+          
+          ctx.drawImage(img,start_x,start_y,cell_width,cell_height);
         } else {
           ctx.clearRect(start_x, start_y, cell_width, cell_height);
         }
@@ -210,7 +221,40 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
 
         // No grid lines, for now!
         //drawGridLines();
-      };
+        
+        //add a click event listener - based on http://www.quesucede.com/public/gameoflife/source.html
+      	//canvas.addEventListener("click", canvasOnClickHandler, false);
+      },
+      canvasOnClickHandler = function(event) {
+        var cell = getCursorPosition(event);
+        var state = Life.grid[cell.row][cell.column]
+          == Life.ALIVE ? Life.DEAD : Life.ALIVE;
+        Life.grid[cell.row][cell.column] = state;
+        drawCell(cell);
+      },
+      getCursorPosition = function(event) {
+        var x;
+        var y;
+        if (event.pageX || event.pageY) {
+          x = event.pageX;
+          y = event.pageY;
+        } else {
+          x = event.clientX
+            + document.body.scrollLeft
+            + document.documentElement.scrollLeft;
+          y = event.clientY
+            + document.body.scrollTop
+            + document.documentElement.scrollTop;
+        }
+
+        x -= gridCanvas.offsetLeft;
+        y -= gridCanvas.offsetTop;
+        
+        var cells = GameOfLife.getCurrentGenCells();
+        var cell = new Cell(Math.floor((y - 4) / Life.CELL_SIZE),
+          Math.floor((x - 2) / Life.CELL_SIZE));
+        return cell;
+      };;
   init();
   return {
     update: function(cell_array) {

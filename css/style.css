@@ -299,3 +299,47 @@ div[role=main] {
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
+/* CUSTOM STYLES */
+body, html {
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color:#000;
+}
+
+.canvas-wrapper {
+	text-align:center;
+}
+
+canvas {
+	border:none !important;
+}
+
+div[role=main] {
+	margin:0;
+}
+
+.canvas-wrapper button {
+	left:0;
+	top:0;
+	width:100px;
+	height:100px;
+	position:absolute;
+	border:none;
+	text-transform:uppercase;
+	font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+	background-color:#000;
+	color:#FFF;
+	transition:background-color 0.25s linear, color 0.25s linear;
+	border:1px solid #FFF;
+}
+.canvas-wrapper button.two {
+	left:100px;
+}
+.canvas-wrapper button:hover {
+	background-color:#FFF;
+	color:#000;
+}
+
+
